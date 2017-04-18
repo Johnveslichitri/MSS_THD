@@ -1,0 +1,23 @@
+
+Admin (To approve the content)
+Add topic/Search topic/MssNewTech
+
+Add topic:
+User registration/ login
+Add topics and documents and desired fields (Contact,Skills expertise)
+
+Search topic:
+
+Topic(Streams)
+Technology(Node,Mule)
+Author(It will display all the topics which were added by particular User)
+Referenced links will be displayed along with the topic content
+Post a comment on a topic
+Need a topic???
+AuthorsDesk (Authors information)
+
+MssNewTech
+
+Just retrieve and shows all the upcoming and trending tech info
+New topics to be added by user based on the users need(From need topic we will be displaying those here so that authors can add those if anyone having idea on that particular topic)
+

@@ -1,0 +1,244 @@
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+ <script src="js/jquery.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ 
+ <script src="js/angular.min.js"></script>
+ </head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<form>
+<div>
+<div>
+UserID: <input class="form-control" type="text" ng-model="userid"  ><br>
+Topicname: <input class="form-control" type="text" name="topicname" ng-model="params.topicname"><br>
+Technology: <input class="form-control" list="technologies" name="technology" ng-model="params.technology">
+  <datalist id="technologies">
+    <option value="IIB">
+    <option value="Mule">
+    <option value="Nodejs">
+    <option value="Java">
+    <option value="IBM Bluemix">
+	<option value="IBM Datapower">
+	<option value="WTX">
+	<option value="Open Whisk">
+	<option value="Angularjs">
+	<option value="MongoDb">
+	<option value="DB2">
+	<option value="MySQL">
+  </datalist>
+Detailed Content: <input class="form-control" type="text" name="content" ng-model="params.content"><br>
+Reference Links: <input class="form-control" type="text" name="links" ng-model="params.links"><br>
+Authorname: <input class="form-control" type="text" name="authorname" ng-model="params.authorname"><br>
+<input type="submit" ng-click="demo(params)" value="Submit" >
+<input type="reset" value="Reset">
+<!--<input type="button" value="Submit" id="btnsubmit" onclick="submitForm()">-->
+</div>
+<div>
+<button class="btn btn-block btn-danger" ng-click="getTopics()" >My Topics</button>
+</div>
+</div>
+<div>
+<button class="btn btn-block btn-danger" ng-click="getSuggTopics()"  >User Suggested Topics</button>
+</div>
+<div>
+<button class="btn btn-block btn-danger" ng-click="getSuggTopicsTech()" >Topics Suggested To Me</button>
+</div>
+<div id="displayTopics" style="display:none;" >
+<!--{{result}}-->
+<table border="1">
+
+<tr >
+        <th>Author Name</th>
+        <th>Topic Name</th>
+        <th>Technology</th>
+      </tr><tr ng-repeat="y in result1">
+  <td>{{y.authorname}}</td>
+  <td>{{y.topicname}}</td>
+  <td>{{y.technology}}</td> 
+  <td><input type="submit" ng-click="viewTopic(y._id)" value="View" ></td>   
+  <td><input type="submit" ng-click="deleteTopic(y._id)" value="Delete" ></td> 
+  <td><input type="submit" ng-click="editTopic(y._id)" value="Edit" ></td> 
+</tr>
+</table>
+</div>
+<div id="displayTopics2" style="display:none;" >
+<!--{{result}}-->
+<table border="1">
+
+<tr >
+        <th>Topic Name</th>
+        <th>Technology</th>
+        <th>User EmailId</th>
+      </tr><tr ng-repeat="x in result">
+  <td>{{x.topicname}}</td>
+  <td>{{x.technology}}</td>
+  <td>{{x.email}}</td> 
+  <td><input type="submit" ng-click="viewSuggTopic(x._id)" value="View" ></td>   
+</tr>
+</table>
+</div>
+</div>
+</form>
+<br>
+<div id="submitDiv1" class="container" style="padding: 15px; padding-top: 2px">
+  
+<div class="padding" id="showData" style="display:none;">
+
+   <div>
+    Topic added Successfully , Click reset to add new topic.
+   </div>
+   
+  </div>
+</div>
+<script>
+
+<!-- AngularJS module define AngularJS applications -->
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$http,$window) {
+   
+$scope.userid=localStorage.getItem('userid');
+ 
+ $scope.demo = function(params) {
+ var userid = $scope.userid;
+ var topicname = params.topicname;
+ var technology = params.technology;
+ var content = params.content;
+ var links = params.links;
+ var authorname = params.authorname;
+      var json = {
+
+        "userid": userid,
+		"topicname": topicname,
+		"technology": technology,
+		"content": content,
+		"links": links,
+		"authorname": authorname
+  };
+  
+  
+  
+    $http.post("/addTopic",json).then(function(data) {
+   
+   if (data.data.error=="failed") {
+   $window.alert('Please Check Entered details');
+   } else {
+			document.getElementById("showData").style.display = "block";
+		 $window.alert('Topic regestered successfully');
+            }
+        })
+  
+  
+ }
+ $scope.getTopics = function() {
+ var json={
+  "userid" : localStorage.getItem('userid')
+ };
+ console.log(json);
+ $http.post("/retrieveIdTopics",json).then(function(data) {
+   
+   console.log(JSON.stringify(data));
+   if (data.data.error=="failed") {
+   $window.alert('Please Check Entered details');
+            } else {
+                console.log(JSON.stringify(data));
+               $scope.result1=data.data;
+				document.getElementById("displayTopics").style.display = "block";
+                
+
+            }
+        })
+ }
+  $scope.viewTopic = function(id) {
+  alert(id);
+  var json={
+  "_id" : id
+ };
+ localStorage.setItem('topicid1',id);
+ console.log(json);
+ $http.post("/retrieveParticularTopic",json).then(function(data) {
+   
+   console.log(JSON.stringify(data));
+   if (data.data.error=="failed") {
+   console.log(JSON.stringify(data))
+   
+                document.getElementById("showData3").style.display = "block";
+            } else {
+			$scope.result1=data.data;
+				document.getElementById("displayTopics").style.display = "block";
+				
+				
+				console.log(data.data._id);
+				$window.location.href="/topicview";
+
+            }
+        })
+ }
+  /*User suggested retreive for author*/
+  $scope.getSuggTopics = function() {
+
+ $http.get("/retrievAllSugg").then(function(data) {
+   
+   console.log(JSON.stringify(data));
+   if (data.data.error=="failed") {
+   
+    $window.alert('Error while retreiving'); 
+            } else {
+			
+			$scope.result=data.data;
+				document.getElementById("displayTopics2").style.display = "block";
+            }
+        })
+ }
+ /*View Suggested topic on id*/
+  $scope.viewSuggTopic = function(id) {
+  alert(id);
+  var json={
+  "_id" : id
+ };
+ localStorage.setItem('topicid2',id);
+ console.log(json);
+ $http.post("/retrieveParticularSuggTopic",json).then(function(data) {
+   
+   console.log(JSON.stringify(data));
+   if (data.data.error=="failed") {
+   console.log(JSON.stringify(data))
+   
+                document.getElementById("showData3").style.display = "block";
+            } else {
+			$scope.result=data.data;
+				document.getElementById("displayTopics2").style.display = "block";
+				
+				
+				console.log(data.data._id);
+				$window.location.href="/suggtopicview";
+
+            }
+        })
+ }
+   /*User suggested retreive for author based on technology*/
+  $scope.getSuggTopicsTech = function() {
+
+ var json={
+  "technology" : localStorage.getItem('technology')
+ };
+ console.log(JSON.stringify(json));
+ $http.post("/retrievesuggTechTopics",json).then(function(data) {
+   
+   
+   if (data.data.error=="failed") {
+   
+    $window.alert('Error while retreiving'); 
+            } else {
+			
+			$scope.result=data.data;
+				document.getElementById("displayTopics2").style.display = "block";
+            }
+        })
+ }
+});
+</script>
+
+</body>
+</html>

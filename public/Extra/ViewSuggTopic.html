@@ -1,0 +1,71 @@
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+ <script src="js/jquery.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ 
+ <script src="js/angular.min.js"></script>
+ </head>
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="demo()">
+
+<div>
+<div id="displayTopic"  >
+<!--{{result}}-->
+<table border="1">
+
+<tr >
+		<th>Topic Id</th>
+		<th>Topic Name</th>
+		<th>Technology</th>
+        <th>Description</th>
+        <th>Email</th>
+        <th>Department</th>
+		<th>Location</th>
+      </tr><tr ng-repeat="x in result1">
+  <td>{{x._id}}</td>
+  <td>{{x.topicname}}</td>
+  <td>{{x.technology}}</td>
+  <td>{{x.description}}</td>
+  <td>{{x.email}}</td>
+  <td>{{x.department}}</td>
+  <td>{{x.location}}</td>
+</tr>
+</table>
+</div>
+</div>
+<script>
+
+<!-- AngularJS module define AngularJS applications -->
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$http,$window) {
+   
+    
+ 
+ $scope.demo = function() {
+  var json={
+  "_id" : localStorage.getItem('topicid2')
+ };
+  console.log(localStorage.getItem('topicid2'));
+  alert(localStorage.getItem('topicid2'));
+
+    $http.post("/retrieveParticularSuggTopic",json).then(function(data) {
+   
+   if (data.data.error=="failed") {
+   console.log(JSON.stringify(data))
+   
+                 $window.alert('Error while retreving the topic');
+            } else{
+			$scope.result1=data.data;
+			document.getElementById("displayTopic").style.display = "block";
+			}
+        })
+  
+  
+ }
+ 
+
+});
+</script>
+
+</body>
+</html>

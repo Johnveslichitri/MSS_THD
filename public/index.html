@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" type="text/css" href="css/Initial/bootstrap.min.css">
+    <script src="js/Initial/jquery.min.js"></script>
+    <script src="js/Initial/bootstrap.min.js"></script>
+
+    <script src="js/Initial/angular.min.js"></script>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Miracle E Learning Bootstrap Theme</title>
+    <meta name="description" content="Your Description Here">
+    <meta name="keywords" content="bootstrap themes, portfolio, responsive theme">
+    <meta name="author" content="ThemeForces.Com">
+
+    <!-- Favicons
+    ================================================== -->
+    <!--  <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">-->
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Raleway:500,600,700,100,800,900,400,200,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div id="tf-home">
+        <div class="overlay">
+            <div id="sticky-anchor"></div>
+            <nav id="tf-menu" class="navbar navbar-default">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                        <a class="navbar-brand logo" href="index.html">Share & Get Knowledge</a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#tf-home">Home</a></li>
+                            <li ><a href="#tf-service">Mss Tech Trends</a></li>
+                            <li><a href="#tf-suggestTopic">Suggest Topic</a></li>
+                            <li><a href="#tf-adminsignin">Admin Login</a></li>
+                            <li><a href="#tf-contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container-fluid -->
+            </nav>
+
+            <div class="container">
+                <div class="content">
+                    <h1>We share the knowledge</h1>
+                    <h3>because we wanted to be the best</h3>
+                    <br>
+                    <a href="#tf-search" class="btn btn-primary my-btn">Knowledge Search</a>
+                    <a href="#tf-share" class="btn btn-primary my-btn2">Share Knowledge</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tf-share">
+        <div class="overlay">
+            <div id="sticky-anchor"></div>
+
+            <div class="container">
+                <div class="content">
+                    <br><br><br><br><br><br>
+                    <h1>Going to signin becuase you are registerd</h1>
+                    <h3>signup to start sharing the knowledge</h3>
+                    <br>
+                    <a href="#tf-signin" class="btn btn-primary my-btn">Sign In</a>
+                    <a href="#tf-register" class="btn btn-primary my-btn2">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tf-service">
+        <div class="container">
+
+            <div class="col-md-4">
+
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <i class="fa fa-gears"></i>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{tech1}}</h4>
+                        <p>{{desc1}}
+						</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <i class="fa fa-gears"></i>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{tech2}}</h4>
+                        <p>{{desc2}}
+						</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <i class="fa fa-gears"></i>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{tech3}}</h4>
+                        <p>{{desc3}}
+						</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="tf-suggestTopic">
+        <div class="container">
+            <div class="section-title">
+                <h3>Suggest your wanted topic here</h3>
+                <hr>
+            </div>
+
+            <div class="space"></div>
+
+            <div class="space"></div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form>
+                        <div>
+                            <input type="Text" class="form-control" id="topicname" placeholder="Enter TopicName" ng-model="params.topicname">
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="technology" placeholder="Enter The Technology" ng-model="params.technology" list="technologies">
+                            <datalist id="technologies">
+							<option value="IIB">
+							<option value="Mule">
+							<option value="Nodejs">
+							<option value="Java">
+							<option value="IBM Bluemix">
+							<option value="IBM Datapower">
+							<option value="WTX">
+							<option value="Open Whisk">
+							<option value="Angularjs">
+							<option value="MongoDb">
+							<option value="DB2">
+							<option value="MySQL">
+							</datalist>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="department" placeholder="Enter The Department" ng-model="params.department" list="departments">
+                            <datalist id="departments">
+							<option value="EAI">
+							<option value="App Dev">
+							<option value="Innovation Labs">
+							<option value="B2B">
+							<option value="SAP">
+							<option value=".Net">
+							<option value="Sales">
+							<option value="Recruitement">
+							</datalist>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="description" placeholder="Describe brief about the topic" ng-model="params.description">
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="email" placeholder="Enter Corporate Email Id" ng-model="params.email">
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="location" placeholder="Enter The Location" ng-model="params.location" list="locations">
+                            <datalist id="locations">
+							<option value="Miracle city">
+							<option value="Miracle Heights">
+							<option value="Atlanta">
+							<option value="Novi">
+							<option value="Detroit">
+							</datalist>
+                        </div>
+
+
+                    </form>
+                    <button type="submit" class="btn btn-primary my-btn dark" ng-click="suggestTopic(params)" value="Submit">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="tf-about">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-6">
+                        <h3>About Me</h3>
+                        <br>
+                        <p>Cras sit amet nibh libero, in gravida nulla. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                        <p>Metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                        <br>
+                        <a href="#tf-why-me" class="btn btn-primary my-btn dark">Why Hire Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div id="tf-search">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <br><br><br><br><br><br>
+                        <h3>Recent Posts</h3>
+                        <br>
+                        <ul class="list-inline why-me">
+                            <li>
+                                <h4>I Do Brand that Sells</h4>
+                                <p>Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+                            </li>
+                            <li>
+                                <h4>You will love my Designs</h4>
+                                <p>Donec lacinia congue felis in faucibus. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+                            </li>
+                            <li>
+                                <h4>I Deliver on Time</h4>
+                                <p>Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.</p>
+                            </li>
+                        </ul>
+                        <a href="./UserSearch.html" class="btn btn-primary my-btn dark">Search More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br>
+    <div id="tf-register">
+        <div class="container">
+            <div class="section-title">
+                <h3>Register Here</h3>
+                <p>To ensure that your knowledge is being shared & It's shining others</p>
+                </p>
+                <hr>
+            </div>
+
+            <div class="space"></div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form>
+                        <div>
+                            <input type="email" class="form-control" id="userid" placeholder="Enter UserID" ng-model="params.userid">
+                        </div>
+                        <div>
+                            <input type="password" class="form-control" id="password" placeholder="Enter Password" ng-model="params.password">
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="firstname" placeholder="Enter First Name" ng-model="params.firstname">
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="lastname" placeholder="Enter Last Name" ng-model="params.lastname">
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="phone" placeholder="Enter Phone Number" ng-model="params.phone">
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="email" placeholder="Enter Corporate Email Id" ng-model="params.mailid">
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="location" placeholder="Enter The Location" ng-model="params.location" list="locations">
+                            <datalist id="locations">
+							<option value="Miracle city">
+							<option value="Miracle Heights">
+							<option value="Atlanta">
+							<option value="Novi">
+							<option value="Detroit">
+							</datalist>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="technology" placeholder="Enter The Technology" ng-model="params.technology" list="technologies">
+                            <datalist id="technologies">
+							<option value="IIB">
+							<option value="Mule">
+							<option value="Nodejs">
+							<option value="Java">
+							<option value="IBM Bluemix">
+							<option value="IBM Datapower">
+							<option value="WTX">
+							<option value="Open Whisk">
+							<option value="Angularjs">
+							<option value="MongoDb">
+							<option value="DB2">
+							<option value="MySQL">
+							</datalist>
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" id="department" placeholder="Enter The Department" ng-model="params.department" list="departments">
+                            <datalist id="departments">
+							<option value="EAI">
+							<option value="App Dev">
+							<option value="Innovation Labs">
+							<option value="B2B">
+							<option value="SAP">
+							<option value=".Net">
+							<option value="Sales">
+							<option value="Recruitement">
+							</datalist>
+                        </div>
+
+                    </form>
+                    <button type="submit" class="btn btn-primary my-btn dark" ng-click="registerAuthor(params)" value="Submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tf-signin">
+        <div class="container">
+            <div class="section-title">
+                <h3>Sign In Here</h3>
+                <p>To ensure that your knowledge is being shared & It's shining others</p>
+                </p>
+                <hr>
+            </div>
+
+            <div class="space"></div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form id="contact">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="userid" placeholder="Enter The UserId" ng-model="params.userid">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password" placeholder="Enter The Password" ng-model="params.password">
+                        </div>
+                        <button type="submit" class="btn btn-primary my-btn dark" ng-click="loginAuthor(params)" value="Submit">Submit</button>
+                        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="tf-adminsignin">
+        <div class="container">
+            <div class="section-title">
+                <h3>Admin Login</h3>
+                <hr>
+            </div>
+
+            <div class="space"></div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <form id="contact">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="userid" placeholder="Enter The UserId" ng-model="params.userid">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password" placeholder="Enter The Password" ng-model="params.password">
+                        </div>
+                        <button type="submit" class="btn btn-primary my-btn dark" ng-click="loginAdmin(params)" value="Submit">Submit</button>
+                        <br><br><br><br><br><br><br><br><br><br><br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+	 <div id="tf-contact">
+        <div class="container">
+            <div class="section-title">
+                <h3>Our HeadQuarters</h3>
+                <hr>
+            </div>
+
+            <div class="space"></div>
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                   <pre>Miracle Software Systems, Inc.
+Global Headquarters
+45625 Grand River Avenue
+Novi, MI - USA( 48374 )
+Ph: (248)-233-1100
+E : eelearning@miraclesoft.com</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="submitDiv1" class="container" style="padding: 15px; padding-top: 2px">
+
+        <div class="padding" id="showData" style="display:none;">
+
+            <div>
+                Registered Successfully , Please login to continue...
+            </div>
+
+        </div>
+        <div class="padding" id="showData1" style="display:none;">
+
+            <div>
+                UserId exists ,please enter another User Id to proceed..
+            </div>
+
+        </div>
+        <div class="padding" id="showData2" style="display:none;">
+
+            <div>
+                Some internal error have occured..
+            </div>
+
+        </div>
+    </div>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http, $window) {
+
+            /*Author Registration Route*/
+            $scope.registerAuthor = function(params) {
+                var userid = params.userid;
+                var password = params.password;
+                var firstname = params.firstname;
+                var lastname = params.lastname;
+                var phone = params.phone;
+                var mailid = params.mailid;
+                var location = params.location;
+                var technology = params.technology;
+                var department = params.department;
+                var json = {
+                    "userid": userid,
+                    "password": password,
+                    "firstname": firstname,
+                    "lastname": lastname,
+                    "phone": phone,
+                    "mailid": mailid,
+                    "location": location,
+                    "technology": technology,
+                    "department": department
+                };
+
+                $http.post("/registerAuthor", json).then(function(data) {
+
+                    console.log("successpage" + JSON.stringify(data));
+                    if (data.data == "Success") {
+                        document.getElementById("showData").style.display = "block";
+                        $window.alert('Registered sucessfully, Please login to continue..');
+                    } else if (data.data.error == "failed") {
+                        document.getElementById("showData2").style.display = "block";
+                        $window.alert('Some erroe occuered while registering');
+                    } else if (data.data == "UserId exists") {
+                        document.getElementById("showData1").style.display = "block";
+                        $window.alert('Please enter another user id');
+
+                    } else {
+                        $window.alert('something went wrong');
+                    };
+                })
+
+            }
+
+            /*Author Login Route*/
+
+            $scope.loginAuthor = function(params) {
+                var userid = params.userid;
+                var password = params.password;
+                var json = {
+
+                    "userid": userid,
+                    "password": password
+                };
+
+                $http.post("/loginAuthor", json).then(function(data) {
+                    if (data.data == "Please check the details entered") {
+
+                        $window.alert('Please enter correct login credentials');
+                    } else if (data.data == "some error occured") {
+                        $window.alert('Some internal error have occured');
+                    } else if (data.data == "Failed to login") {
+                        $window.alert('Please enter correct credentials');
+
+                    } else {
+                        document.getElementById("showData").style.display = "block";
+                        localStorage.setItem('userid', data.data.userid);
+                        localStorage.setItem('technology', data.data.technology);
+                        alert(JSON.stringify(data.data.technology));
+                        console.log(data.data.userid);
+                        alert(data.data.userid);
+                        $window.location.href = "/authorEnter";
+
+                    }
+                })
+
+
+            }
+            /*Admin Login Route*/
+
+            $scope.loginAdmin = function(params) {
+                var userid = params.userid;
+                var password = params.password;
+                var json = {
+
+                    "userid": userid,
+                    "password": password
+                };
+
+                $http.post("/loginAdmin", json).then(function(data) {
+                    if (data.data == "Please check the details entered") {
+
+                        document.getElementById("showData1").style.display = "block";
+                        $window.alert('Please enter correct login credentials');
+                    } else if (data.data == "some error occured") {
+                        document.getElementById("showData1").style.display = "block";
+                    } else {
+                        document.getElementById("showData").style.display = "block";
+                        localStorage.setItem('useridadmin', data.data.userid);
+                        console.log(data.data.userid);
+                        alert(data.data);
+                        $window.location.href = "/adminview";
+
+                    }
+                })
+
+
+            }
+            /*User topic suggestion*/
+            $scope.suggestTopic = function(params) {
+                var topicname = params.topicname;
+                var technology = params.technology;
+                var description = params.description;
+                var email = params.email;
+                var department = params.department;
+                var location = params.location;
+                var json = {
+                    "topicname": topicname,
+                    "technology": technology,
+                    "description": description,
+                    "email": email,
+                    "department": department,
+                    "location": location
+                };
+
+                $http.post("/suggTopicAdd", json).then(function(data) {
+
+                    if (data.data.error == "failed") {
+                        $window.alert('Some error occuered while registering');
+                    } else {
+
+                        $window.alert('Suggestion successfully got registered..Keep updated');
+                    }
+                })
+
+            }
+			/*Retrieving Latest Tech*/
+			  $scope.techTrends = function() {
+					$http.get("/retrievAllTech").then(function(data) {
+						if (data.data.error=="failed") {
+							$window.alert('Some error occuered while fetching');
+						} else {
+			
+							$scope.tech1=data.data[0].newtech;
+							$scope.desc1=data.data[0].description;
+							$scope.tech2=data.data[1].newtech;
+							$scope.desc2=data.data[1].description;
+							$scope.tech3=data.data[2].newtech;
+							$scope.desc3=data.data[2].description;
+							
+							document.getElementById("displayTopics").style.display = "block";
+
+						}
+				})
+			}
+			$scope.techTrends();
+
+        });
+    </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.1.11.1.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+
+    <!-- Javascripts
+    ================================================== -->
+    <script type="text/javascript" src="js/main.js"></script>
+
+</body>
+
+</html>

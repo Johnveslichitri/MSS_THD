@@ -1,0 +1,143 @@
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+ <script src="js/jquery.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ 
+ <script src="js/angular.min.js"></script>
+ </head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<form>
+<div>
+<div>
+UserID: <input class="form-control" type="text" name="userid" ng-model="params.userid"><br>
+Password: <input class="form-control" type="password" name="password" ng-model="params.password"><br>
+First Name: <input class="form-control" type="text" name="firstname" ng-model="params.firstname"><br>
+Last Name: <input class="form-control" type="text" name="lastname" ng-model="params.lastname"><br>
+Phone: <input class="form-control" type="text" name="phone" ng-model="params.phone"><br>
+Mail Id: <input class="form-control" type="text" name="mailid" ng-model="params.mailid"><br>
+Location: <input class="form-control" list="locations" name="location" ng-model="params.location">
+  <datalist id="locations">
+    <option value="Miracle city">
+    <option value="Miracle Heights">
+    <option value="Atlanta">
+    <option value="Novi">
+    <option value="Detroit">
+  </datalist>
+Technology: <input class="form-control" list="technologies" name="technology" ng-model="params.technology">
+  <datalist id="technologies">
+    <option value="IIB">
+    <option value="Mule">
+    <option value="Nodejs">
+    <option value="Java">
+    <option value="IBM Bluemix">
+	<option value="IBM Datapower">
+	<option value="WTX">
+	<option value="Open Whisk">
+	<option value="Angularjs">
+	<option value="MongoDb">
+	<option value="DB2">
+	<option value="MySQL">
+  </datalist>
+  Department: <input class="form-control" list="departments" name="department" ng-model="params.department">
+  <datalist id="departments">
+    <option value="EAI">
+    <option value="App Dev">
+    <option value="Innovation Labs">
+    <option value="B2B">
+    <option value="SAP">
+	<option value=".Net">
+	<option value="Sales">
+	<option value="Recruitement">
+  </datalist>
+<button class="btn btn-block btn-danger" ng-click="demo(params)" value="Submit" >Submit</button>
+<button class="btn btn-block btn-danger" type="reset" value="Reset">Reset</button>
+<!--<input type="button" value="Submit" id="btnsubmit" onclick="submitForm()">-->
+</div>
+</div>
+</form>
+<br>
+<div id="submitDiv1" class="container" style="padding: 15px; padding-top: 2px">
+  
+<div class="padding" id="showData" style="display:none;">
+
+   <div>
+    Registered Successfully , Please login to continue...
+   </div>
+   
+  </div>
+    <div class="padding" id="showData1" style="display:none;">
+
+   <div>
+    UserId exists ,please enter another User Id to proceed..
+   </div>
+   
+  </div>
+   <div class="padding" id="showData2" style="display:none;">
+
+   <div>
+    Some internal error have occured..
+   </div>
+   
+  </div>
+</div>
+<script>
+
+<!-- AngularJS module define AngularJS applications -->
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$http,$window) {
+   
+    
+ 
+ $scope.demo = function(params) {
+ var userid = params.userid;
+ var password = params.password;
+ var firstname = params.firstname;
+ var lastname = params.lastname;
+ var phone = params.phone;
+ var mailid = params.mailid;
+ var location = params.location;
+ var technology = params.technology;
+ var department = params.department;
+      var json = {
+        "userid": userid,
+		"password": password,
+		"firstname": firstname,
+		"lastname": lastname,
+		"phone": phone,
+		"mailid": mailid,
+		"location": location,
+		"technology": technology,
+		"department": department
+  };
+  
+  
+  
+ // $http.post("http://localhost:8001/registerDataAng",json).then(function(data) {
+    $http.post("/registerAuthor",json).then(function(data) {
+	
+	console.log("successpage"+JSON.stringify(data));
+	if(data.data=="Success"){
+	document.getElementById("showData").style.display = "block";
+	}
+   else if(data.data.error=="failed"){
+   document.getElementById("showData2").style.display = "block";
+	$window.alert('Some erroe occuered while registering');  
+   }
+   else if(data.data=="UserId exists")
+   {
+          document.getElementById("showData1").style.display = "block";
+	$window.alert('Please enter another user id');      
+	
+            } else{
+			$window.alert('something went wrong'); 
+			};
+        })
+  
+ }
+});
+</script>
+
+</body>
+</html>

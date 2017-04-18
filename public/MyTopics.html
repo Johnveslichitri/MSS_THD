@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/Initial/bootstrap.min.css">
+    <script src="js/Initial/jquery.min.js"></script>
+    <script src="js/Initial/bootstrap.min.js"></script>
+
+    <script src="js/Initial/angular.min.js"></script>
+    <title>Welcome Author</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/Inner/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/Inner/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/Inner/matrix-style.css" />
+    <link rel="stylesheet" href="css/Inner/matrix-media.css" />
+    <link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <div id="header">
+        <h1><a href="dashboard.html">Welcome Author</a></h1>
+    </div>
+    <!--Header-part-->
+    <div id="user-nav" class="navbar navbar-inverse">
+        <ul class="nav">
+            <li class="dropdown" id="profile-messages"><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome Author</span><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+
+    <!--start-top-serch-->
+    <div id="search">
+        <input type="text" placeholder="Search here..." />
+        <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+    </div>
+    <!--close-top-serch-->
+
+    <!--sidebar-menu-->
+    <div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-inbox"></i> Widgets</a>
+        <ul>
+            <li><a href="AuthorIndex.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+            <li> <a href="AddTopic.html"><i class="icon icon-signal"></i> <span>Add Topic</span></a> </li>
+            <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Topics</span> <span class="label label-important">2</span></a>
+                <ul>
+                    <li><a href="MyTopics.html">My Topics</a></li>
+                    <li><a href="AllTopics.html">All Topics</a></li>
+                </ul>
+            </li>
+            <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>User Suggestions</span> <span class="label label-important">2</span></a>
+                <ul>
+
+                    <li><a href="MySuggestions.html">Suggestions For Me</a></li>
+                    <li><a href="Suggestions.html">All Suggestions</a></li>
+                </ul>
+            </li>
+
+
+        </ul>
+    </div>
+    <!--sidebar-menu-->
+
+    <!--main-container-part-->
+    <div id="content">
+        <div class="container-fluid">
+            <hr>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"> <i class="icon-file"></i> </span>
+                            <h5>My Topics</h5>
+                        </div>
+                        <div class="widget-content nopadding">
+                            <ul class="recent-posts">
+                                <li ng-repeat="data1 in result">
+                                    <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
+                                    <div class="article-post" id="test">
+                                        <div class="fr"><a href="#" class="btn btn-primary btn-mini" ng-click="viewTopic(data1._id)">View</a> <a href="#" class="btn btn-success btn-mini">Edit</a> <a href="#" class="btn btn-danger btn-mini" ng-click="deleteTopic(data1._id)">Delete </a></div>
+                                        <span class="user-info"></a> 
+				  <p >
+				  {{data1.topicname}}
+				  </p>
+                </div>
+              </li>
+              
+              
+            </ul>
+          </div>
+        </div>
+            
+          </div>
+   
+   
+          
+          </div>
+             
+          </div>
+        </div>
+      
+
+<!--end-Footer-par	t-->
+<script src="js/Inner/jquery.min.js"></script> 
+<script src="js/Inner/bootstrap.min.js"></script> 
+<script src="js/Inner/jquery.ui.custom.js"></script> 
+<script src="js/Inner/matrix.js"></script>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http, $window) {
+    $scope.test = "gai";
+    $scope.userid = localStorage.getItem('userid');
+    var userid1 = $scope.userid;
+    console.log("Id:" + userid1)
+	
+    $scope.getTopics = function() {
+        var json = {
+            "userid": localStorage.getItem('userid')
+        };
+        console.log(json);
+        $http.post("/retrieveIdTopics", json).then(function(data) {
+
+            console.log(JSON.stringify(data.data[0].topicname));
+            if (data.data.error == "failed") {
+                $window.alert('Please Check Entered details');
+            } else {
+                console.log(JSON.stringify(data));
+                $scope.result = data.data;
+                
+                $scope.var1 = data.data[0].topicname;
+                console.log("InScope:" + data.data[0].topicname);
+              
+
+
+            }
+        })
+    }
+	$scope.getTopics();
+
+$scope.viewTopic = function(id) {
+  alert(id);
+  var json={
+  "_id" : id
+ };
+ localStorage.setItem('topicid1',id);
+ console.log(json);
+ $window.location.href="/topicview";
+ 
+ }
+ /*Delete his topic by author*/
+ $scope.deleteTopic = function(id) {
+  alert(id);
+  var json={
+  "_id" : id
+ };
+ console.log(json);
+ $http.post("/deleteTopic",json).then(function(data) {
+   
+   console.log(JSON.stringify(data));
+   if (data.data.error=="failed") {
+ 
+   $window.alert('Some error occured internally , Please try again');
+              
+            } else {
+			$scope.result=data.data;
+				 $window.alert('Topic deleted successfully');
+				 $window.location.href="/AuthorTopic";
+
+            }
+        })
+ }
+})
+</script>
+</body>
+</html>

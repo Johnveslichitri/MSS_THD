@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/Initial/bootstrap.min.css">
+    <script src="js/Initial/jquery.min.js"></script>
+    <script src="js/Initial/bootstrap.min.js"></script>
+
+    <script src="js/Initial/angular.min.js"></script>
+    <title>Welcome Author</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/Inner/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/Inner/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" href="css/Inner/colorpicker.css" />
+    <link rel="stylesheet" href="css/Inner/datepicker.css" />
+    <link rel="stylesheet" href="css/Inner/uniform.css" />
+    <link rel="stylesheet" href="css/Inner/select2.css" />
+    <link rel="stylesheet" href="css/Inner/matrix-style.css" />
+    <link rel="stylesheet" href="css/Inner/matrix-media.css" />
+    <link rel="stylesheet" href="css/Inner/bootstrap-wysihtml5.css" />
+    <link href="fonts/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <!--Header-part-->
+    <div id="header">
+        <h1><a href="dashboard.html">Welcome Author</a></h1>
+    </div>
+    <!--close-Header-part-->
+
+    <!--top-Header-menu-->
+    <div id="user-nav" class="navbar navbar-inverse">
+        <ul class="nav">
+            <li class="dropdown" id="profile-messages"><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">Welcome Author</span><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-user"></i> My Profile</a></li>
+                    <li class="divider"></li>
+                    <li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+
+    <!--start-top-serch-->
+    <div id="search">
+        <input type="text" placeholder="Search here..." />
+        <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+    </div>
+    <!--close-top-serch-->
+
+    <!--sidebar-menu-->
+
+    <div id="sidebar"> <a href="#" class="visible-phone"><i class="icon icon-inbox"></i> Widgets</a>
+        <ul>
+            <li><a href="AuthorIndex.html"><i class="icon icon-home"></i> <span>Dashboard</span></a> </li>
+            <li> <a href="AddTopic.html"><i class="icon icon-signal"></i> <span>Add Topic</span></a> </li>
+            <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Topics</span> <span class="label label-important">2</span></a>
+                <ul>
+                    <li><a href="MyTopics.html">My Topics</a></li>
+                    <li><a href="AllTopics.html">All Topics</a></li>
+                </ul>
+            </li>
+            <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>User Suggestions</span> <span class="label label-important">2</span></a>
+                <ul>
+
+                    <li><a href="MySuggestions.html">Suggestions For Me</a></li>
+                    <li><a href="Suggestions.html">All Suggestions</a></li>
+                </ul>
+            </li>
+
+
+        </ul>
+    </div>
+
+    <!--close-left-menu-stats-sidebar-->
+
+    <div id="content">
+        <div id="content-header">
+            <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> </div>
+            <h1>Author Topic Adding</h1>
+        </div>
+        <div class="container-fluid">
+            <hr>
+            <div class="row-fluid">
+                <div class="span12">
+                    <div class="widget-box">
+                        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+                            <h5>Please fill these feilds</h5>
+                        </div>
+                        <div class="widget-content nopadding">
+                            <form action="#" method="get" class="form-horizontal">
+                                <div class="control-group">
+                                    <label class="control-label">User Id :</label>
+                                    <div class="controls">
+                                        <input class="span11" type="text" ng-model="userid" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Author Name :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Provide Authorname" name="authorname" ng-model="params.authorname" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Topic Name :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Provide Topic Name" name="topicname" ng-model="params.topicname" />
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Technology</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" list="technologies" placeholder="Please enter the technology" name="technology" ng-model="params.technology" />
+                                        <datalist id="technologies">
+    <option value="IIB">
+    <option value="Mule">
+    <option value="Nodejs">
+    <option value="Java">
+    <option value="IBM Bluemix">
+	<option value="IBM Datapower">
+	<option value="WTX">
+	<option value="Open Whisk">
+	<option value="Angularjs">
+	<option value="MongoDb">
+	<option value="DB2">
+	<option value="MySQL">
+  </datalist>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Reference Links :</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" placeholder="Provide referall links for users" name="links" ng-model="params.links" />
+                                    </div>
+                                </div>
+                                <!-- 	 <div class="widget-content">
+        <div class="control-group">
+		<label class="control-label">Content:</label>
+            <div class="controls">
+              <textarea class="textarea_editor span12" rows="6" placeholder="Enter Content of the topic ..."><input name="content" ng-model="params.content" /></textarea>
+			  
+            </div>
+
+        </div>
+      </div> -->
+                                <div class="control-group">
+                                    <label class="control-label">Content:</label>
+                                    <div class="controls">
+                                        <input type="text" class="span11" rows="6" name="content" ng-model="params.content" placeholder="Enter Content of the topic ..." />
+                                    </div>
+
+                                </div>
+
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-success" ng-click="demo(params)" value="Submit">Finish</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="submitDiv1" class="container" style="padding: 15px; padding-top: 2px">
+
+                        <div class="padding" id="showData" style="display:none;">
+
+                            <div>
+                                Topic added Successfully , Add another topic.
+                            </div>
+
+                        </div>
+                    </div>
+                    <script src="js/Inner/jquery.min.js"></script>
+                    <script src="js/Inner/jquery.ui.custom.js"></script>
+                    <script src="js/Inner/bootstrap.min.js"></script>
+                    <script src="js/Inner/bootstrap-colorpicker.js"></script>
+                    <script src="js/Inner/bootstrap-datepicker.js"></script>
+
+                    <script src="js/Inner/masked.js"></script>
+                    <script src="js/Inner/jquery.uniform.js"></script>
+                    <script src="js/Inner/select2.min.js"></script>
+                    <script src="js/Inner/matrix.js"></script>
+                    <script src="js/Inner/wysihtml5-0.3.0.js"></script>
+                    <script src="js/Inner/jquery.peity.min.js"></script>
+                    <script src="js/Inner/bootstrap-wysihtml5.js"></script>
+                    <script>
+                        $('.textarea_editor').wysihtml5();
+                    </script>
+
+                    <script>
+                        var app = angular.module('myApp', []);
+                        app.controller('myCtrl', function($scope, $http, $window) {
+                            console.log("Id:");
+                            $scope.userid = localStorage.getItem('userid');
+                            var userid1 = $scope.userid;
+                            console.log("Id:" + userid1);
+                            $scope.demo = function(params) {
+                                var userid = $scope.userid;
+                                var topicname = params.topicname;
+                                var technology = params.technology;
+                                var content = params.content;
+                                var links = params.links;
+                                var authorname = params.authorname;
+                                var json = {
+
+                                    "userid": userid,
+                                    "topicname": topicname,
+                                    "technology": technology,
+                                    "content": content,
+                                    "links": links,
+                                    "authorname": authorname
+                                };
+
+
+                                console.log(json);
+                                $http.post("/addTopic", json).then(function(data) {
+
+                                    if (data.data.error == "failed") {
+                                        $window.alert('Please Check Entered details');
+                                    } else {
+                                        document.getElementById("showData").style.display = "block";
+                                        $window.alert('Topic regestered successfully,You can add another topic..');
+                                    }
+                                })
+
+
+                            }
+
+                        });
+                    </script>
+
+</body>
+
+</html>

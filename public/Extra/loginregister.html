@@ -1,0 +1,37 @@
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+ <script src="js/jquery.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ 
+ <script src="js/angular.min.js"></script>
+ </head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<div>
+<div>
+<button class="btn btn-block btn-danger" ng-click="login()" value="SignIn" >SignIn</button>
+<button class="btn btn-block btn-danger" ng-click="signup()" value="SignUp" >SignUp</button>
+</div>
+</div>
+<script>
+
+<!-- AngularJS module define AngularJS applications -->
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$http,$window) {
+   
+
+  $scope.login = function() {
+  $window.location.href="/authorloginform";
+ }
+
+ /*Suggest Topic Function*/
+   $scope.signup = function() {
+  $window.location.href="/registerauthor";
+ }
+ 
+});
+</script>
+
+</body>
+</html>

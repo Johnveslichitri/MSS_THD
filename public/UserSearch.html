@@ -1,0 +1,169 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/Initial/bootstrap.min.css">
+    <script src="js/Initial/jquery.min.js"></script>
+    <script src="js/Initial/bootstrap.min.js"></script>
+    <script src="js/Initial/angular.min.js"></script>
+    <link rel="stylesheet" href="css/search.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <title>Welcome User</title>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div class="search-background">
+        <img src="./img/img2.jpg">
+    </div>
+    <div class="well-searchbox">
+        <form class="form-horizontal" role="form">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Topic Name</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" placeholder="Enter Topic Name" ng-model="params.topicname">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Technology</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Enter Technology" ng-model="params.technology">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Author Name</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Enter Author Name" ng-model="params.authorname">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-offset-4 col-sm-5">
+                    <button type="submit" class="btn btn-success btn-block" ng-click="demo(params)" value="Search">Search</button>
+                </div>
+            </div>
+        </form>
+        <div id="content">
+            <div class="container-fluid">
+                <hr>
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="widget-box">
+
+                            <div class="widget-content nopadding">
+                                <ul class="recent-posts">
+
+                                    <div class="rows">
+                                        <li ng-repeat="data1 in result">
+                                            <div class="col-md-4">
+                                                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
+                                            </div>
+                                            <div class="article-post" id="test">
+
+                                                <span class="user-info"></a> 
+				<div class="col-md-4"  >  <p ng-style="{'color':'white'}">
+				  {{data1.topicname}}
+				  </p></div>
+				   <div class="col-md-4"  > <div class="fr" ><a href="#" class="btn btn-primary btn-mini" ng-click="viewTopic(data1._id)">View</a> </div></div>
+                </div>
+              </li>
+			  </div>
+            </ul>
+          </div>
+        </div>
+            
+          </div>
+   
+   
+          
+          </div>
+             
+          </div>
+        </div>
+<!-- <div id="displayTopics" style="display:none;">
+<table border="1">
+
+<tr >
+        <th>Author Name</th>
+        <th>Topic Name</th>
+        <th>Technology</th>
+      </tr><tr ng-repeat="x in result">
+  <td>{{x.authorname}}</td>
+  <td>{{x.topicname}}</td>
+  <td>{{x.technology}}</td> 
+  <td><input type="submit" ng-click="viewTopic(x._id)" value="View" ></td> 
+</tr>
+</table>
+</div> -->
+
+ 
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope, $http, $window) {
+    $scope.demo = function(params) {
+ var topicname = params.topicname;
+ var authorname = params.authorname;
+ var technology = params.technology;
+ 
+      var json = {
+
+        "topicname": topicname,
+		"authorname":authorname,
+		"technology":technology
+  };
+  
+  
+  
+ // $http.post("http://localhost:8001/registerDataAng",json).then(function(data) {
+    $http.post("/retrieveTopics",json).then(function(data) {
+   
+   if (data.data.error=="failed") {
+
+    $window.alert('No data on topics available on this seach');
+                
+            } else{
+			
+			$scope.result=data.data;
+			
+			}
+        })
+  
+  
+ }
+/*View Topic*/
+$scope.viewTopic = function(id) {
+  alert(id);
+  var json={
+  "_id" : id
+ };
+ localStorage.setItem('topicid1',id);
+ console.log(json);
+ $http.post("/retrieveParticularTopic",json).then(function(data) {
+   
+   console.log(JSON.stringify(data));
+   if (data.data.error=="failed") {
+   console.log(JSON.stringify(data))
+   
+                document.getElementById("showData3").style.display = "block";
+            } else {
+			$scope.result=data.data;
+				
+				
+				console.log(data.data._id);
+				$window.location.href="/topicview";
+
+            }
+        })
+ }
+ 
+})
+</script>		
+</body>
+</html>

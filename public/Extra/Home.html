@@ -1,0 +1,44 @@
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+ <script src="js/jquery.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ 
+ <script src="js/angular.min.js"></script>
+ </head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<div>
+<div>
+<button class="btn btn-block btn-danger" ng-click="explore()" value="Explore" >Explore Topics</button>
+<button class="btn btn-block btn-danger" ng-click="topicsadd()" value="Share Knowledge" >Share Knowledge</button>
+<button class="btn btn-block btn-danger" ng-click="MssTech()" value="MssTech" >Jump into Latest MSS Tech Arena</button>
+<button class="btn btn-block btn-danger" ng-click="AdminLogin()" value="Admin" >Admin Login</button>
+</div>
+</div>
+<script>
+
+<!-- AngularJS module define AngularJS applications -->
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$http,$window) {
+   
+     $scope.explore = function() {
+  $window.location.href="/searchtopics";
+ }
+  $scope.topicsadd = function() {
+  $window.location.href="/loginregister";
+ }
+
+ /*Suggest Topic Function*/
+   $scope.MssTech = function() {
+  $window.location.href="/msstech";
+ }
+ 
+ $scope.AdminLogin = function() {
+  $window.location.href="/adminlogin";
+ }
+});
+</script>
+
+</body>
+</html>

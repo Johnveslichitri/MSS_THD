@@ -1,0 +1,27 @@
+.search-background img {
+    width: 100%;
+}
+.well-searchbox {
+  margin-right: 39px;
+  min-height: 40px;
+  min-width: 650px;
+  padding: 19px;
+  position: absolute;
+  z-index: 80;
+  top: 90px;
+  right: 100px;
+  background: rgba(0, 0, 0, 0.4);
+  margin-bottom: 20px;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.well-searchbox label {
+    color: #fff;
+}
+.child_div_1{
+    float:left;
+    margin-right:5px;
+}

@@ -1,0 +1,107 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+ <script src="js/jquery.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ 
+ <script src="js/angular.min.js"></script>
+<title>Login form</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+	<!----------start member-login----------->
+	<div class="Author-login" style="width:400px; margin:200px auto;>
+			<!----------star form----------->
+				<form class="login"  action="#" method="post" >
+	
+					<div class="formtitle">Author Login</div>
+					<div class="input-group">
+						<input type="text" placeholder="User Id" class="form-control" name="userid" ng-model="params.userid"  required/>
+						<span><img src="images/select.png"/> </span>
+					  
+					</div>
+					<div class="input-group">
+						<input type="password"  placeholder="Password" class="form-control"  name="password" ng-model="params.password"required/>
+					<span><img src="images/close.png"/></span>
+					</div>
+					<div class="buttons">
+					<!--	<a href="E:/THD/MssElearningSystem/public/AuthorChangePassword.html">Change password?</a>-->
+						
+						<input class="bluebutton" type="submit" value="Login" ng-click="demo(params)" />
+						<div></div>
+					<input class="bluebutton" type="submit" value="Change password?" ng-click="updatepassword()" />
+						<div class="clear"> </div>
+					</div>
+		
+				</form>
+				<!----------end form----------->
+		</div>
+<br>
+<div id="submitDiv1" class="container" style="padding: 15px; padding-top: 2px">
+  
+<div class="padding" id="showData" style="display:none;">
+
+   <div style="color:white">
+    Login Successfull...Explore the knowledge
+   </div>
+   
+  </div>
+ <div class="padding" id="showData1" style="display:none;">
+
+   <div style="color:white">
+    Login Failed...Please check the login details...
+   </div>
+   
+  </div>
+</div>
+<script>
+
+<!-- AngularJS module define AngularJS applications -->
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$http,$window) {
+
+ $scope.demo = function(params) {
+ var userid = params.userid;
+ var password = params.password;
+      var json = {
+
+        "userid": userid,
+		"password": password
+  };
+  
+  
+  
+ // $http.post("http://localhost:8001/registerDataAng",json).then(function(data) {
+    $http.post("/loginAuthor",json).then(function(data) {
+	if(data.data=="Please check the details entered"){
+	
+	document.getElementById("showData1").style.display = "block";
+	$window.alert('Please enter correct login credentials');
+	}
+   else if(data.data=="some error occured"){
+	document.getElementById("showData1").style.display = "block";
+	}
+   else{
+                document.getElementById("showData").style.display = "block";
+				localStorage.setItem('userid',data.data.userid);
+				localStorage.setItem('technology',data.data.technology);
+				alert(JSON.stringify(data.data.technology));
+				console.log(data.data.userid);
+				alert(data.data);
+				$window.location.href="/addtopicform";
+				
+            } 
+        })
+  
+  
+ }
+ $scope.updatepassword = function(params) {
+ $window.location.href="/changepassword";
+ }
+});
+</script>
+
+</body>
+</html>

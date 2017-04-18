@@ -1,0 +1,123 @@
+<html>
+<head>
+ <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+ <script src="js/jquery.min.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+ 
+ <script src="js/angular.min.js"></script>
+ </head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<form>
+<div>
+<div>
+Topic Name: <input class="form-control" type="text" name="topicname" ng-model="params.topicname"><br>
+Technology: <input class="form-control" type="text" name="technology" ng-model="params.technology"><br>
+Author Name: <input class="form-control" type="text" name="authorname" ng-model="params.authorname"><br>
+<button class="btn btn-block btn-danger" ng-click="demo(params)" value="Search" >Search</button>
+<button class="btn btn-block btn-danger" type="reset" value="Reset">Reset</button>
+<button class="btn btn-block btn-danger" ng-click="suggestTopic()" value="Suggest Topic" >Suggest Topic</button>
+<div id="displayTopics" style="display:none;">
+<table border="1">
+
+<tr >
+        <th>Author Name</th>
+        <th>Topic Name</th>
+        <th>Technology</th>
+      </tr><tr ng-repeat="x in result">
+  <td>{{x.authorname}}</td>
+  <td>{{x.topicname}}</td>
+  <td>{{x.technology}}</td> 
+  <td><input type="submit" ng-click="viewTopic(x._id)" value="View" ></td> 
+</tr>
+</table>
+</div>
+</div>
+</form>
+<br>
+<div id="submitDiv1" class="container" style="padding: 15px; padding-top: 2px">
+  
+<div class="padding" id="showData" style="display:none;">
+
+   <div>
+    New Technolgy added Successfully ...
+   </div>
+   
+  </div>
+
+</div>
+<script>
+
+<!-- AngularJS module define AngularJS applications -->
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope,$http,$window) {
+   
+    
+ 
+ $scope.demo = function(params) {
+ var topicname = params.topicname;
+ var authorname = params.authorname;
+ var technology = params.technology;
+ 
+      var json = {
+
+        "topicname": topicname,
+		"authorname":authorname,
+		"technology":technology
+  };
+  
+  
+  
+ // $http.post("http://localhost:8001/registerDataAng",json).then(function(data) {
+    $http.post("/retrieveTopics",json).then(function(data) {
+   
+   if (data.data.error=="failed") {
+
+    $window.alert('No data on topics available on this seach');
+                
+            } else{
+			document.getElementById("displayTopics").style.display = "block";
+			$scope.result=data.data;
+			}
+        })
+  
+  
+ }
+ 
+  $scope.viewTopic = function(id) {
+  alert(id);
+  var json={
+  "_id" : id
+ };
+ localStorage.setItem('topicid1',id);
+ console.log(json);
+ $http.post("/retrieveParticularTopic",json).then(function(data) {
+   
+   console.log(JSON.stringify(data));
+   if (data.data.error=="failed") {
+   console.log(JSON.stringify(data))
+   
+                document.getElementById("showData3").style.display = "block";
+            } else {
+			$scope.result=data.data;
+				document.getElementById("displayTopics").style.display = "block";
+				
+				
+				console.log(data.data._id);
+				$window.location.href="/topicview";
+
+            }
+        })
+ }
+ /*Suggest Topic Function*/
+   $scope.suggestTopic = function() {
+   alert("Are sure want to add a suggestion");
+ // window.location.assign("/suggesttopic");
+  $window.location.href="/suggesttopic";
+ }
+ 
+});
+</script>
+
+</body>
+</html>
